@@ -1,11 +1,12 @@
 local api = vim.api
 
 local build_commands = {
-  c = "g++ -o %:p:r.o %",
-  cpp = "g++ -o %:p:r.o %",
+  c = "g++ -std=c++17 -o %:p:r.o %",
+  cpp = "g++ -std=c++17 -o %:p:r.o %",
   rust = "cargo build --release",
   go = "go build -o %:p:r.o %",
   zig = "zig build",
+  nim = "nim c %<"
 }
 
 local run_commands = {
@@ -14,6 +15,8 @@ local run_commands = {
   rust = "cargo run --release",
   go = "%:p:r.o",
   zig = "zig run %",
+  nim = "%:p:r",
+  python = "python3 %",
 }
 
 api.nvim_create_user_command("Build", function()

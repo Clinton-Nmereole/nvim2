@@ -2,6 +2,17 @@ local lsp = require('lsp-zero').preset({})
 
 lsp.ensure_installed({
   "lua_ls",
+  "rust_analyzer",
+  "gopls",
+  "tsserver",
+  "clangd",
+  "pyright",
+  "nimls",
+  "cssls",
+  "zls",
+  "astro",
+  "svelte",
+  "tailwindcss",
 })
 
 lsp.on_attach(function(client, bufnr)

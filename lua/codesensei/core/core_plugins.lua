@@ -1,9 +1,5 @@
 local themes = require("codesensei.core.themes")
 local M = {
-	  {
-	  "ellisonleao/gruvbox.nvim"
-  	},
-
   	--Telescope
   	{
   	  'nvim-telescope/telescope.nvim',
@@ -56,7 +52,7 @@ local M = {
   	  dependencies = {
   	    --LSP support
   	    "neovim/nvim-lspconfig",
-  	    "williamboman/mason.nvim",
+        "williamboman/mason.nvim",
   	    "williamboman/mason-lspconfig.nvim",
 
   	    --Autocompletions
@@ -111,12 +107,51 @@ local M = {
   	},
   	{
   	  "rcarriga/nvim-dap-ui",
+      dependencies = {
+        "mfussenegger/nvim-dap",
+      },
+      config = function()
+        local dap = require("dap")
+        local dapui = require("dapui")
+        dapui.setup()
+        dap.listeners.after.event_initialized["dapui_config"] = function()
+          dapui.open()
+        end
+        dap.listeners.before.event_terminated["dapui_config"] = function()
+          dapui.close()
+        end
+        dap.listeners.before.event_exited["dapui_config"] = function()
+          dapui.close()
+        end
+      end,
       lazy = true
   	},
+    --Python debugger
   	{
   	  "mfussenegger/nvim-dap-python",
+      ft = "python",
+      dependencies = {
+        "mfussenegger/nvim-dap",
+        "rcarriga/nvim-dap-ui",
+      },
+      config = function()
+        require("dap-python").setup()
+      end,
       lazy = true
   	},
+    --Go Debbugger
+    {
+      "dreamsofcode-io/nvim-dap-go",
+      ft = "go",
+      dependencies = {
+        "mfussenegger/nvim-dap",
+      },
+      config = function(_, opts)
+        require("dap-go").setup(opts)
+      end,
+      lazy = true
+
+    },
 
     -- Notify
     {
@@ -154,6 +189,8 @@ local M = {
         require("bufferline").setup()
       end,
     },
+
+    --Noice
     {
       "folke/noice.nvim",
       event = "VeryLazy",
@@ -169,6 +206,11 @@ local M = {
             },
             signature = {
               enabled = false,
+            },
+            override = {
+              ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+              ["vim.lsp.util.stylize_markdown"] = true,
+              ["cmp.entry.get_documentation"] = true,
             }
           },
           presets = {
@@ -182,6 +224,116 @@ local M = {
       end
     },
 
+    --[[
+    --Miscellaneous
+    --]]--
+
+    --Go language support
+    {
+      "olexsmir/gopher.nvim",
+      ft = "go",
+      config = function (_, opts)
+        require("gopher").setup(opts)
+      end,
+    },
+
+    --Nim language support
+    {
+      "alaviss/nim.nvim",
+      ft = "nim",
+    },
+
+    --Odin language support
+    {
+      "Tetralux/odin.vim",
+      ft = "odin",
+    },
+
+    --Carp language support
+    {
+      "hellerve/carp-vim",
+      ft = "carp",
+    },
+
+    --Nushell language support 
+    {
+      "LhKipp/nvim-nu",
+      ft = {"nushell", "nu"},
+    },
+
+    --Rust language support
+    {
+      "simrat39/rust-tools.nvim",
+      ft = "rust",
+      dependencies = "VonHeikemen/lsp-zero.nvim",
+      config = function ()
+        require("rust-tools").setup()
+      end,
+    },
+
+    {
+      "rust-lang/rust.vim",
+      ft = "rust",
+      init = function ()
+        vim.g.rustfmt_autosave = 1
+      end
+    },
+
+    {
+      "saecki/crates.nvim",
+      ft = {"rust", "toml"},
+      config = function (_, opts)
+        local crates = require("crates")
+        crates.setup(opts)
+        crates.show()
+      end,
+    },
+
+    --Zig language support
+    {
+      "ziglang/zig.vim",
+      ft = "zig",
+    },
+
+    -- Spectre search and replace
+    {
+      "nvim-pack/nvim-spectre",
+      config = function ()
+        require("spectre").setup()
+      end
+    },
+
+    --Codeium for AI suggestions
+    {
+      "Exafunction/codeium.vim",
+      lazy = false,
+    },
+
+    --LazyGit
+    {
+      "kdheepak/lazygit.nvim",
+      cmd = "LazyGit",
+      init = function ()
+        vim.g.lazygit_floating_window_winblend = 0
+        vim.g.lazygit_floating_window_scaling_factor = 0.9
+        vim.g.lazygit_floating_window_border_chars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰'}
+        vim.g.lazygit_use_neovim_remote = 1
+        vim.g.lazygit_floating_window_use_plenary = 0
+      end
+    },
+    {
+      "folke/which-key.nvim",
+      event = "VeryLazy",
+      init = function()
+        vim.o.timeout = true
+        vim.o.timeoutlen = 300
+      end,
+      opts = {
+        -- your configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+      }
+    },
     --Themes
     themes,
 

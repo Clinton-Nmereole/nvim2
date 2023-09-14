@@ -8,36 +8,36 @@ local themes = {
         style = "moon",
       })
     end,
-    lazy = false,
+    lazy = true,
     priority = 1000
   },
   {
 	  "ellisonleao/gruvbox.nvim",
     name = "gruvbox",
-    lazy = false
+    lazy = true
   },
   {
     "catppuccin/nvim",
     name = "catppuccin",
-    init = function()
-      vim.cmd.colorscheme "catppuccin"
-    end,
     config = function ()
       require("catppuccin").setup({
-        flavor = "macchiato"
+        flavor = "frappe"
       })
+    end,
+    init = function()
+      vim.cmd.colorscheme "catppuccin-frappe"
     end,
     priority = 1000,
   },
   {
     "nyoom-engineering/oxocarbon.nvim",
     name = "oxocarbon",
-    lazy = false
+    lazy = true
   },
   {
     "savq/melange-nvim",
     name = "melange",
-    lazy = false
+    lazy = true
   },
   {
     "rmehri01/onenord.nvim",
@@ -50,7 +50,7 @@ local themes = {
     config = function()
       --require 'nordic' .load()
     end,
-    lazy = false
+    lazy = true
   },
   {
     "Shatur/neovim-ayu",
@@ -60,7 +60,7 @@ local themes = {
         mirage = false
       })
     end,
-    lazy = false
+    lazy = true
   },
   {
     "ray-x/aurora",
@@ -95,7 +95,6 @@ local themes = {
     name = "base16",
     lazy = false,
   },
-
 
  }
 

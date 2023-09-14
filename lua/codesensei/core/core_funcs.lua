@@ -71,3 +71,10 @@ api.nvim_create_user_command("ColorMe", function()
   colors:find()
 end, {})
 
+keymap.set("n", "<leader>th", ":ColorMe<CR>")
+
+--Bufferline
+keymap.set("n", "<Tab>", ":BufferLineCycleNext<CR>", { silent = true})
+keymap.set("n", "<S-Tab>", ":BufferLineCyclePrev<CR>", { silent = true})
+
+

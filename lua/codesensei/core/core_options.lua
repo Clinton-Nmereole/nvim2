@@ -9,6 +9,7 @@ opt.softtabstop = 2
 opt.number = true
 opt.relativenumber = true
 opt.ruler = false
+opt.ignorecase = true
 opt.splitright = true
 opt.splitbelow = true
 opt.termguicolors = true
