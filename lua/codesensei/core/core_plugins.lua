@@ -54,6 +54,11 @@ local M = {
   	    "neovim/nvim-lspconfig",
         "williamboman/mason.nvim",
   	    "williamboman/mason-lspconfig.nvim",
+        "jay-babu/mason-nvim-dap.nvim",
+
+        --null-ls
+        "jose-elias-alvarez/null-ls.nvim",
+        "jay-babu/mason-null-ls.nvim",
 
   	    --Autocompletions
   	    "hrsh7th/nvim-cmp",
@@ -66,6 +71,7 @@ local M = {
   	    --Snippets
   	    "L3MON4D3/LuaSnip",
   	    "rafamadriz/friendly-snippets",
+        "honza/vim-snippets",
   	  }
   	},
 
@@ -81,10 +87,6 @@ local M = {
   	{
   	  "glepnir/lspsaga.nvim"
   	},
-  	{
-  	  "jose-elias-alvarez/null-ls.nvim"
-  	},
-
   	{
   	  "nvim-lualine/lualine.nvim",
   	  dependencies = "nvim-tree/nvim-web-devicons",
@@ -313,6 +315,7 @@ local M = {
     {
       "kdheepak/lazygit.nvim",
       cmd = "LazyGit",
+      dependencies = "nvim-lua/plenary.nvim",
       init = function ()
         vim.g.lazygit_floating_window_winblend = 0
         vim.g.lazygit_floating_window_scaling_factor = 0.9
@@ -334,6 +337,14 @@ local M = {
         -- refer to the configuration section below
       }
     },
+
+    --Plugin that remembers the last color theme called with ":colorscheme"
+    {
+      "raddari/last-color.nvim",
+      lazy = false,
+      priority = 1000
+    },
+
     --Themes
     themes,
 

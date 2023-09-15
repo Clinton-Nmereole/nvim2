@@ -36,3 +36,12 @@ keyset("n", "<leader>ut", ":UndotreeToggle<CR>", { silent = true})
 --Spectre Search and Replace
 local spectre = require("spectre")
 keyset("n", "<leader>sr", function() spectre.toggle() end)
+keyset("n", "<leader>sf", function() spectre.open_file_search({ selected_word = false}) end)
+keyset("n", "<leader>ss", function() spectre.open() end)
+
+--LazyGit
+keyset("n", "<leader>lg", ":LazyGit<CR>", { silent = true})
+
+--NvimTree
+keyset('n', '<leader>nt', ':NvimTreeToggle<CR>')
+keyset('n', '<leader>nf', ':NvimTreeFocus<CR>')

@@ -31,8 +31,7 @@ require('nvim-tree').setup({
   }
 })
 
-keymap.set('n', '<leader>nt', ':NvimTreeToggle<CR>')
-keymap.set('n', '<leader>nf', ':NvimTreeFocus<CR>')
+
 
 local function open_nvim_tree()
 
