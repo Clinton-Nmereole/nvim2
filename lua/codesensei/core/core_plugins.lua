@@ -57,7 +57,12 @@ local M = {
         "jay-babu/mason-nvim-dap.nvim",
 
         --null-ls
-        "jose-elias-alvarez/null-ls.nvim",
+        {
+          "jose-elias-alvarez/null-ls.nvim",
+          opts = function ()
+            return require("codesensei.core.plugin_configs.null-ls")
+          end,
+        },
         "jay-babu/mason-null-ls.nvim",
 
   	    --Autocompletions
@@ -343,6 +348,18 @@ local M = {
       "raddari/last-color.nvim",
       lazy = false,
       priority = 1000
+    },
+
+    --Latex support
+    {
+      "lervag/vimtex",
+      ft = "tex",
+      config = function ()
+        vim.g.vimtex_view_method = "zathura"
+        vim.g.vimtex_view_general_viewer = "zathura"
+        vim.g.compiler_method = "tex-live"
+        vim.g.maplocalleader = ","
+      end
     },
 
     --Themes

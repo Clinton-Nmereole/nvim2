@@ -68,6 +68,7 @@
   "undotree": { "branch": "master", "commit": "0e11ba7325efbbb3f3bebe06213afa3e7ec75131" },
   "vim-devicons": { "branch": "master", "commit": "71f239af28b7214eebb60d4ea5bd040291fb7e33" },
   "vim-snippets": { "branch": "master", "commit": "ccc2fa1529d372f7ac16d5eb07a385a72b50e05d" },
+  "vimtex": { "branch": "master", "commit": "2b8a5f16a5768b3ae1780c266b73022dbb658af1" },
   "which-key.nvim": { "branch": "main", "commit": "7ccf476ebe0445a741b64e36c78a682c1c6118b7" },
   "zig.vim": { "branch": "master", "commit": "15841fc4fecfb1b6c02da9b4cc17ced135edbf8e" }
 }

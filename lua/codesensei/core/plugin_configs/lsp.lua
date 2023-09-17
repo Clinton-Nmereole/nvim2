@@ -21,6 +21,20 @@ lsp.on_attach(function(client, bufnr)
   lsp.default_keymaps({buffer = bufnr})
 end)
 
+lsp.format_on_save({
+  enable = true,
+  format_opts = {
+    async = false,
+    timeout_ms = 10000,
+  },
+  servers = {
+    ["rust_analyzer"] = {"rust"},
+    ["gopls"] = {"go"},
+    --["black"] = {"python"},
+    ["null_ls"] = {"python"},
+  }
+})
+
 -- (Optional) Configure lua language server for neovim
 require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
 
