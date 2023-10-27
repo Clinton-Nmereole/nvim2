@@ -45,3 +45,22 @@ keyset("n", "<leader>lg", ":LazyGit<CR>", { silent = true})
 --NvimTree
 keyset('n', '<leader>nt', ':NvimTreeToggle<CR>')
 keyset('n', '<leader>nf', ':NvimTreeFocus<CR>')
+
+
+--vim diagnostic
+keyset( "n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>")
+
+--Lsplines
+local lsplines = require('lsp_lines')
+keyset('n', '<leader>ll', function ()
+  lsplines.toggle()
+end)
+
+--Trouble
+-- Lua
+keyset("n", "<leader>xx", function() require("trouble").toggle() end)
+keyset("n", "<leader>xw", function() require("trouble").toggle("workspace_diagnostics") end)
+keyset("n", "<leader>xd", function() require("trouble").toggle("document_diagnostics") end)
+keyset("n", "<leader>xq", function() require("trouble").toggle("quickfix") end)
+keyset("n", "<leader>xl", function() require("trouble").toggle("loclist") end)
+keyset("n", "gR", function() require("trouble").toggle("lsp_references") end)

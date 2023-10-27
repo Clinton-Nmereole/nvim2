@@ -1,9 +1,10 @@
 local g = vim.g
 local api = vim.api
-local keymap = vim.keymap
 
 g.loaded_netrw = 1
 g.loaded_netrwPlugin = 1
+
+vim.cmd("hi NvimTreeNormal guibg=NONE")
 
 require('nvim-tree').setup({
   disable_netrw = true,
@@ -18,7 +19,7 @@ require('nvim-tree').setup({
   view = {
     adaptive_size = false,
     side = "left",
-    width = 28,
+    width = 32,
     preserve_window_proportions = true,
   },
   filesystem_watchers = {

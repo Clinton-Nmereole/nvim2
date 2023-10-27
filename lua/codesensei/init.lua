@@ -5,3 +5,4 @@ require("codesensei.keymaps")
 
 local theme = require("last-color").recall() or "catppuccin-mocha"
 vim.cmd("colorscheme " .. theme)
+vim.cmd("TransparentDisable")

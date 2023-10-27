@@ -6,7 +6,8 @@ local build_commands = {
   rust = "cargo build --release",
   go = "go build -o %:p:r.o %",
   zig = "zig build",
-  nim = "nim c %<"
+  nim = "nim c %<",
+  java = "javac %",
 }
 
 local run_commands = {
@@ -17,6 +18,7 @@ local run_commands = {
   zig = "zig run %",
   nim = "%:p:r",
   python = "python3 %",
+  java = "java %:p",
 }
 
 api.nvim_create_user_command("Build", function()

@@ -3,8 +3,11 @@ local M = {
   	--Telescope
   	{
   	  'nvim-telescope/telescope.nvim',
-  	  tag = '0.1.0',
-  	  dependencies = "nvim-lua/plenary.nvim"
+  	  tag = '0.1.4',
+  	  dependencies = "nvim-lua/plenary.nvim",
+      config = function()
+        require("telescope").setup()
+      end
 
   	},
 
@@ -65,7 +68,7 @@ local M = {
         },
         "jay-babu/mason-null-ls.nvim",
 
-  	    --Autocompletions
+  	    --Autocompletionsplugins
   	    "hrsh7th/nvim-cmp",
   	    "hrsh7th/cmp-nvim-lsp",
   	    "hrsh7th/cmp-buffer",
@@ -80,9 +83,29 @@ local M = {
   	  }
   	},
 
+    --Lsp-Lines
+    {
+      "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+      config = function()
+        require("lsp_lines").setup({
+          vim.diagnostic.config({
+            virtual_text = false,
+            virtual_lines = true,
+          }),
+        })
+      end,
+    },
+
   	--indent blankline
   	{
-  	  "lukas-reineke/indent-blankline.nvim"
+  	  "lukas-reineke/indent-blankline.nvim",
+      main = "ibl",
+      opts = {},
+      config = function()
+        require("ibl").setup({
+            indent = { char = "¦" },
+        })
+      end,
   	},
 
   	{
@@ -209,10 +232,10 @@ local M = {
         require("noice").setup({
           lsp = {
             hover = {
-              enabled = false,
+              enabled = true,
             },
             signature = {
-              enabled = false,
+              enabled = true,
             },
             override = {
               ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
@@ -225,7 +248,7 @@ local M = {
             command_palette = true,
             long_message_to_split = true,
             inc_rename = false,
-            lsp_doc_border = false,
+            lsp_doc_border = true,
           }
         })
       end
@@ -234,6 +257,16 @@ local M = {
     --[[
     --Miscellaneous
     --]]--
+    --
+    --Alpha-nvim
+    
+   {
+    'goolord/alpha-nvim',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    config = function ()
+        require'alpha'.setup(require'alpha.themes.startify'.config)
+    end
+   },
 
     --Go language support
     {
@@ -254,6 +287,12 @@ local M = {
     {
       "Tetralux/odin.vim",
       ft = "odin",
+    },
+
+    --Lobster language support
+    {
+      "jcorbin/vim-lobster",
+      ft = "lobster",
     },
 
     --Carp language support
@@ -294,6 +333,12 @@ local M = {
         crates.setup(opts)
         crates.show()
       end,
+    },
+
+    --Astrojs support
+    {
+      "wuelnerdotexe/vim-astro",
+      ft = "astro",
     },
 
     --Zig language support
@@ -360,6 +405,86 @@ local M = {
         vim.g.compiler_method = "tex-live"
         vim.g.maplocalleader = ","
       end
+    },
+    -- Transparent background for neovim
+    {
+      "tribela/vim-transparent"
+    },
+
+    --VimWiiki
+    {
+      "vimwiki/vimwiki",
+      lazy = false,
+    },
+
+    --Neorg plugin
+    {
+      "nvim-neorg/neorg",
+      run = ":Neorg sync-parsers",
+      config = function ()
+        require("neorg").setup({
+          load = {
+            ["core.defaults"] = {},
+          }
+        })
+      end,
+      dependencies = "nvim-lua/plenary.nvim",
+    },
+
+    --Wakatime
+    {
+      "wakatime/vim-wakatime"
+    },
+
+    -- Trouble
+    {
+      "folke/trouble.nvim",
+      dependencies = "nvim-tree/nvim-web-devicons",
+      opt = {},
+    },
+
+    --barbacue
+    {
+        "utilyre/barbecue.nvim",
+        name = "barbecue",
+        version = "*",
+        dependencies = {
+          "SmiteshP/nvim-navic",
+          "nvim-tree/nvim-web-devicons", -- optional dependency
+        },
+        opts = {
+          -- configurations go here
+        },
+    },
+
+    --colorizer
+    {
+      "norcalli/nvim-colorizer.lua",
+      config = function()
+        require("colorizer").setup()
+      end
+    },
+
+    --Conform
+    {
+        "stevearc/conform.nvim",
+        opts = {},
+        config = function()
+            require("conform").setup({
+                formatters_by_ft = {
+                  lua = { "stylua" },
+                  -- Conform will run multiple formatters sequentially
+                  python = { "isort", "black" },
+                  -- Use a sub-list to run only the first available formatter
+                  javascript = { { "prettierd", "prettier" } },
+                },
+                format_on_save = {
+                    -- These options will be passed to conform.format()
+                    timeout_ms = 500,
+                    lsp_fallback = true,
+                },
+            })
+        end
     },
 
     --Themes

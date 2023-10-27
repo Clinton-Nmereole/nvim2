@@ -48,7 +48,8 @@ cmp.setup({
     --Enter key confirms completion
     ['<CR>'] = cmp.mapping.confirm({select = false}),
     --Ctrl + Space to trigger completion menu
-    ['<C-Space>'] = cmp.mapping.complete(),
+    --['<C-Space>'] = cmp.mapping.complete(),
     ['<Tab>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
   }
 })
+

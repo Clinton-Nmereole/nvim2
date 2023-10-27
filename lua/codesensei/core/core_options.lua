@@ -3,8 +3,8 @@ local opt = vim.opt
 opt.clipboard = "unnamedplus"
 opt.cursorline = true
 opt.expandtab = true
-opt.shiftwidth = 2
-opt.tabstop = 2
+opt.shiftwidth = 4
+opt.tabstop = 4
 opt.softtabstop = 2
 opt.number = true
 opt.relativenumber = true
@@ -27,7 +27,3 @@ require('lualine').setup{
      }
 }
 
-require("indent_blankline").setup {
-    char = '¦',
-    show_end_of_line = true,
-}

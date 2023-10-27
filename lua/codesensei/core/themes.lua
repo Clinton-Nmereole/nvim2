@@ -103,7 +103,18 @@ local themes = {
     "nobbmaestro/nvim-andromeda",
     dependencies = { "tjdevries/colorbuddy.nvim", branch = "dev" },
     lazy = false
-  }
+  },
+  {
+    "dotsilas/darcubox-nvim",
+  },
+
+  --kanagawa
+  {
+      "rebelot/kanagawa.nvim"
+  },
+  {
+      "EdenEast/nightfox.nvim"
+  },
 
  }
 
